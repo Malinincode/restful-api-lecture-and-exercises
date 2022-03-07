@@ -69,10 +69,20 @@ async function fetchAllPuns() {
 
 
 
-            const response = await fetch('https://puns-app.herokuapp.com/puns', {
-                method: 'DELETE', 
-                
-            })    
+            try {
+                const response = await fetch('https://puns-app.herokuapp.com/puns', {
+                    method: 'DELETE', 
+                  
+                })
+        
+                if (!response.ok) {
+                    throw new Error('Something went wrong with the API')
+                }
+        
+                window.location.replace('index.html') // redirects to index.html
+            } catch(error) {
+                console.log(error);
+            }
         }
 
 
